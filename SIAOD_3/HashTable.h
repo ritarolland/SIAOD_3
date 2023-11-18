@@ -101,33 +101,23 @@ void insert(HashTable* hashTable, char eng_word[100], char rus_word[100]) {
 
 dict_word* search(HashTable* hashTable, char eng_word[100]) {
     int index = hashTable->hashFunction(eng_word);
-    int iterations = 0;
-    while (hashTable->tableElements[index] == nullptr) {
-        index = (index + 1) % hashTable->capacity;
-        iterations++;
-        if (iterations >= hashTable->capacity - 1) {
-            return nullptr;
-        }
-    }
-    while (hashTable->tableElements[index] != nullptr)
-    {
-        if (strcmp(hashTable->tableElements[index]->eng_word, eng_word) == 0) {
+
+    for (int iterations = 0; iterations < hashTable->capacity; iterations++) {
+        if (hashTable->tableElements[index] != nullptr && strcmp(hashTable->tableElements[index]->eng_word, eng_word) == 0) {
             return hashTable->tableElements[index];
         }
         index = (index + 1) % hashTable->capacity;
-        iterations++;
-        if (iterations >= hashTable->capacity - 1) {
-            return nullptr;
-        }
     }
     return nullptr;
+
 }
 
 void deleteElement(HashTable* hashTable, char eng_word[100]) {
+
     int index = hashTable->hashFunction(eng_word);
-    while (hashTable->tableElements[index] != nullptr)
-    {
-        if (strcmp(hashTable->tableElements[index]->eng_word, eng_word) == 0) {
+
+    for (int iterations = 0; iterations < hashTable->capacity; iterations++) {
+        if (hashTable->tableElements[index] != nullptr && strcmp(hashTable->tableElements[index]->eng_word, eng_word) == 0) {
             delete hashTable->tableElements[index];
             hashTable->tableElements[index] = nullptr;
             hashTable->size--;
@@ -135,6 +125,7 @@ void deleteElement(HashTable* hashTable, char eng_word[100]) {
         }
         index = (index + 1) % hashTable->capacity;
     }
+    
 }
 
 

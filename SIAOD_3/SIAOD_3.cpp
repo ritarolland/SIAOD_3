@@ -5,7 +5,7 @@
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    HashTable* hashTable = new HashTable(31);
+    HashTable* hashTable = new HashTable(11);
     char eng_word[100];
     /*strcpy_s(eng_word, "friend");
 
@@ -24,9 +24,10 @@ int main()
     insert(hashTable, eng_word, rus_word);
     hashTable->print();
     dict_word* word = search(hashTable, eng_word);
-    cout << word->rus_word;
+    if(word != nullptr) cout << word->rus_word;
     strcpy_s(eng_word, "phone");
     deleteElement(hashTable, eng_word);
+    cout << endl;
     hashTable->print();
 
 }
