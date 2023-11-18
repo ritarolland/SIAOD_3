@@ -115,7 +115,7 @@ dict_word* search(HashTable* hashTable, char eng_word[100]) {
 void deleteElement(HashTable* hashTable, char eng_word[100]) {
 
     int index = hashTable->hashFunction(eng_word);
-
+    
     for (int iterations = 0; iterations < hashTable->capacity; iterations++) {
         if (hashTable->tableElements[index] != nullptr && strcmp(hashTable->tableElements[index]->eng_word, eng_word) == 0) {
             delete hashTable->tableElements[index];

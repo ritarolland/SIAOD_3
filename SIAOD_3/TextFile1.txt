@@ -1,0 +1,5 @@
+bag сумка
+pillow подушка
+phone телефон
+grass трава
+blanket одеяло
